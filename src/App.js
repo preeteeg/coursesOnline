@@ -6,6 +6,7 @@ import AboutUs from "./components/aboutUs/aboutUs.component";
 import CoursesPage from "./components/courses/courses.component";
 import Header from "./components/header/header.component";
 import PageNotFound from "./components/pageNotFound/pageNotFound.component";
+
 function App() {
   return (
     <div className="App">
