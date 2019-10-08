@@ -1,3 +1,5 @@
+import * as types from "../../actions/courses/actionTypes";
+
 //step 3: reducer handle this action
 // and once course is added to redux store
 //reducer : is a function that accepts state and action and returns a new state
@@ -6,7 +8,7 @@
 const INITIAL_STATE = [];
 const courseReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "CREATE_COURSE":
+    case types.CREATE_COURSE:
       //return an updated of state
       return [...state, { ...action.course }];
     //clone state by spread
