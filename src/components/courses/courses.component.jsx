@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as CourseActions from "../../redux/actions/courses/courseActions";
 import PropTypes from "prop-types";
-
+import { bindActionCreators } from "redux";
 class CoursesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +21,10 @@ class CoursesPage extends React.Component {
     //1st dispatch the action
     //  this.props.dispatch(CourseActions.createCourse(this.state.course));
     //cleaner way, we dont need to call dispatch here since that's being handled in mapDispatchToProps now
-    this.props.createCourse(this.state.course);
+    //this.props.createCourse(this.state.course);
 
+    //Redux Flow: mapDispatchToProps: bindActionCreators
+    this.props.actions.createCourse(this.state.course);
     console.log(this.state.course.title);
   };
 
@@ -41,7 +43,8 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  createCourse: PropTypes.func.isRequired
+  //createCourse: PropTypes.func.isRequired
+  actions: PropTypes.object.isRequired
 };
 
 //connect is a function that connect the component to redux
@@ -54,7 +57,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     //dispatch is one that notifies react about an action
-    createCourse: course => dispatch(CourseActions.createCourse(course))
+    //  createCourse: course => dispatch(CourseActions.createCourse(course))
+    actions: bindActionCreators(CourseActions, dispatch)
   };
 };
 
